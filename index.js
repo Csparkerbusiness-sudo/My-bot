@@ -1,14 +1,13 @@
 const express = require("express");
 const app = express();
 
-// Test route (Render uses this to confirm it's alive)
 app.get("/", (req, res) => {
   res.send("Bot is running 🚀");
 });
 
-// IMPORTANT: Render assigns its own port
-const PORT = process.env.PORT;
+// FIX: Render-safe port handling
+const PORT = process.env.PORT || 10000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log("Server running on port " + PORT);
 });
