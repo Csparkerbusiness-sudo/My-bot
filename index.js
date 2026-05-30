@@ -1,23 +1,19 @@
-const express = require("express");
-const { Client, GatewayIntentBits } = require("discord.js");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+  const { Client, GatewayIntentBits } = require("discord.js");
 
-app.get("/", (req, res) => {
-  res.send("Bot is running");
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+console.log("TOKEN EXISTS:", !!process.env.DISCORD_TOKEN);
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds]
+  intents: [GatewayIntentBits.Guilds],
 });
 
 client.once("ready", () => {
-  console.log(`Logged in as ${client.user.tag}`);
+  console.log("Bot is ONLINE as:", client.user.tag);
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.on("error", console.error);
+process.on("unhandledRejection", console.error);
+
+client.login(process.env.DISCORD_TOKEN)
+  .then(() => console.log("Login sent"))
+  .catch(console.error);in(process.env.DISCORD_TOKEN);
