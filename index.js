@@ -16,4 +16,4 @@ process.on("unhandledRejection", console.error);
 
 client.login(process.env.DISCORD_TOKEN)
   .then(() => console.log("Login sent"))
-  .catch(console.error);in(process.env.DISCORD_TOKEN);
+  .catch(console.error);
